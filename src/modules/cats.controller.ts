@@ -1,10 +1,16 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
-  @Get()
-  findAll(@Req() request) {
-    console.log('Query Params:', request.query);
-    return [];
+
+  @Post()
+  create() {
+    // TODO: Add some logic to create a cat here
   }
+
+  @Get()
+  async findAll(): Promise<any[]> {
+    return Promise.resolve([{name: 'Tom'}]);
+  }
+
 }
