@@ -21,7 +21,7 @@ export class CatsController {
   }
 
   @Get()
-  @UseGuards(RolesGuard)
+  //@UseGuards(RolesGuard)
   async findAll(): Promise<any[]> {
     return this.catsService.findAll();
   }
