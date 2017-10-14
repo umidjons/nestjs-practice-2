@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseFilters, Param, UseGuards, ReflectMetadata } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseFilters, Param, UseGuards } from '@nestjs/common';
 import { CreateCatDto } from '../dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from '../interfaces/cats.interface';
@@ -7,6 +7,7 @@ import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter'
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { RolesGuard } from '../common/guards/roles.guard';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('cats')
 //@UseGuards(RolesGuard)
@@ -22,7 +23,7 @@ export class CatsController {
 
   @Get()
   @UseGuards(RolesGuard)
-  @ReflectMetadata('roles', ['admin'])
+  @Roles('admin')
   async findAll(): Promise<any[]> {
     return this.catsService.findAll();
   }
