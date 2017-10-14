@@ -1,17 +1,21 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
+import { CatsService } from './cats.service';
+import { Cat } from './interfaces/cats.interface';
 
 @Controller('cats')
 export class CatsController {
 
+  constructor(private readonly catsService: CatsService) {}
+
   @Post()
   async create(@Body() createCatDto: CreateCatDto) {
-    // TODO: Add some logic to create a cat here
+    this.catsService.create(createCatDto);
   }
 
   @Get()
   async findAll(): Promise<any[]> {
-    return Promise.resolve([{name: 'Tom'}]);
+    return this.catsService.findAll();
   }
 
 }
