@@ -9,7 +9,7 @@ import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { RolesGuard } from '../common/guards/roles.guard';
 
 @Controller('cats')
-@UseGuards(RolesGuard)
+//@UseGuards(RolesGuard)
 export class CatsController {
 
   constructor(private readonly catsService: CatsService) {}
@@ -21,6 +21,7 @@ export class CatsController {
   }
 
   @Get()
+  @UseGuards(RolesGuard)
   async findAll(): Promise<any[]> {
     return this.catsService.findAll();
   }
