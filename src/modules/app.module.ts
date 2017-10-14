@@ -9,6 +9,7 @@ export class ApplicationModule implements NestModule {
 
   configure(consumer: MiddlewaresConsumer): void {
     consumer.apply(LoggerMiddleware)
+      .with('ApplicationModule') // pass string to the middleware
       .forRoutes(
         {path: '/cats', method: RequestMethod.GET},
         {path: '/cats', method: RequestMethod.POST}
