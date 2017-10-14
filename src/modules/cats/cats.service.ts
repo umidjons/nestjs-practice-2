@@ -1,5 +1,5 @@
 import { Component } from '@nestjs/common';
-import { Cat } from './interfaces/cats.interface';
+import { Cat } from '../interfaces/cats.interface';
 
 @Component()
 export class CatsService {
