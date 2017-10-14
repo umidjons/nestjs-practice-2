@@ -6,7 +6,6 @@ import { ForbiddenException } from '../common/exceptions/forbidden.exception';
 import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
 
 @Controller('cats')
-@UseFilters(new HttpExceptionFilter())
 export class CatsController {
 
   constructor(private readonly catsService: CatsService) {}
