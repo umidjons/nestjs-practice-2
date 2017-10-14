@@ -4,6 +4,7 @@ import { CatsService } from './cats.service';
 import { Cat } from '../interfaces/cats.interface';
 import { ForbiddenException } from '../common/exceptions/forbidden.exception';
 import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 
 @Controller('cats')
 export class CatsController {
@@ -11,9 +12,9 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Post()
-  async create(@Body() createCatDto: CreateCatDto) {
-    //this.catsService.create(createCatDto);
-    throw new ForbiddenException();
+  async create(@Body('', new ValidationPipe()) createCatDto: CreateCatDto) {
+    this.catsService.create(createCatDto);
+    //throw new ForbiddenException();
   }
 
   @Get()
