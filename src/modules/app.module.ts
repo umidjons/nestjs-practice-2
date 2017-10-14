@@ -1,6 +1,8 @@
 import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
-import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+//import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+import { loggerMiddleware } from './common/middlewares/logger.middleware';
 import { CatsModule } from './cats/cats.module';
+import { CatsController } from './cats/cats.controller';
 
 @Module({
   modules: [CatsModule]
@@ -8,6 +10,8 @@ import { CatsModule } from './cats/cats.module';
 export class ApplicationModule implements NestModule {
 
   configure(consumer: MiddlewaresConsumer): void {
+    consumer.apply(loggerMiddleware).forRoutes(CatsController);
+    /*
     consumer.apply(LoggerMiddleware)
       .with('ApplicationModule') // pass string to the middleware
       .forRoutes(
@@ -18,6 +22,7 @@ export class ApplicationModule implements NestModule {
         // or just specify controller
         // .forRoutes(CatsController)
       );
+    */
   }
 
 }

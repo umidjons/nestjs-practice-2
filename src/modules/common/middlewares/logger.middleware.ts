@@ -1,5 +1,6 @@
 import { Middleware, NestMiddleware, ExpressMiddleware } from '@nestjs/common';
 
+/*
 @Middleware()
 export class LoggerMiddleware implements NestMiddleware {
   test(): Promise<string> {
@@ -21,3 +22,9 @@ export class LoggerMiddleware implements NestMiddleware {
     };
   }
 }
+*/
+
+export const loggerMiddleware = (req, res, next) => {
+  console.log('Request...');
+  next();
+};
