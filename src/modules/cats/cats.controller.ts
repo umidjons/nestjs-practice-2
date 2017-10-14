@@ -6,12 +6,12 @@ import { ForbiddenException } from '../common/exceptions/forbidden.exception';
 import { HttpExceptionFilter } from '../common/exceptions/http-exception.filter';
 
 @Controller('cats')
+@UseFilters(new HttpExceptionFilter())
 export class CatsController {
 
   constructor(private readonly catsService: CatsService) {}
 
   @Post()
-  @UseFilters(new HttpExceptionFilter())
   async create(@Body() createCatDto: CreateCatDto) {
     //this.catsService.create(createCatDto);
     throw new ForbiddenException();
