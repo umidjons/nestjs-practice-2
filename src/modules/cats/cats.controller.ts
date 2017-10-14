@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseFilters, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseFilters, Param, UseGuards, ReflectMetadata } from '@nestjs/common';
 import { CreateCatDto } from '../dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from '../interfaces/cats.interface';
@@ -21,7 +21,8 @@ export class CatsController {
   }
 
   @Get()
-  //@UseGuards(RolesGuard)
+  @UseGuards(RolesGuard)
+  @ReflectMetadata('roles', ['admin'])
   async findAll(): Promise<any[]> {
     return this.catsService.findAll();
   }
