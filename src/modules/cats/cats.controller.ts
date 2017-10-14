@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseFilters, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseFilters, Param, UseGuards, UseInterceptors } from '@nestjs/common';
 import { CreateCatDto } from '../dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from '../interfaces/cats.interface';
@@ -8,9 +8,11 @@ import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
+import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
 
 @Controller('cats')
 //@UseGuards(RolesGuard)
+@UseInterceptors(LoggingInterceptor)
 export class CatsController {
 
   constructor(private readonly catsService: CatsService) {}
