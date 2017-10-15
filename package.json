@@ -28,16 +28,18 @@
   "devDependencies": {
     "@types/jest": "^21.1.2",
     "@types/node": "^8.0.28",
+    "@types/supertest": "^2.0.3",
     "jest": "^21.2.1",
     "nodemon": "^1.12.1",
+    "supertest": "^3.0.0",
     "ts-jest": "^21.1.2",
     "ts-node": "^3.3.0"
   },
-	"jest": {
+  "jest": {
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(/__tests__/.*|\\.(test|spec|e2e-spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
