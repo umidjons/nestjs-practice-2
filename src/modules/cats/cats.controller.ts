@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseFilters, Param, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseFilters, Param, UseGuards, UseInterceptors, Inject } from '@nestjs/common';
 import { CreateCatDto } from '../dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from '../interfaces/cats.interface';
@@ -16,7 +16,7 @@ import { TransformInterceptor } from '../common/interceptors/transform.intercept
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
 export class CatsController {
 
-  constructor(private readonly catsService: CatsService) {}
+  constructor(private readonly catsService: CatsService, @Inject('ConnectionToken') private conn: any) {}
 
   @Post()
   async create(@Body('', new ValidationPipe()) createCatDto: CreateCatDto) {
@@ -28,6 +28,7 @@ export class CatsController {
   @UseGuards(RolesGuard)
   @Roles('admin')
   async findAll(): Promise<any[]> {
+    console.log('ConnectionToken:', this.conn);
     return this.catsService.findAll();
   }
 
