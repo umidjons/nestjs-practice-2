@@ -7,7 +7,8 @@
     "start": "node index.js",
     "start:watch": "nodemon",
     "prestart:prod": "tsc",
-    "start:prod": "node dist/server.js"
+    "start:prod": "node dist/server.js",
+    "test": "./node_modules/.bin/jest"
   },
   "dependencies": {
     "@nestjs/common": "^4.0.0",
@@ -25,8 +26,23 @@
     "typescript": "^2.5.2"
   },
   "devDependencies": {
+    "@types/jest": "^21.1.2",
     "@types/node": "^8.0.28",
+    "jest": "^21.2.1",
     "nodemon": "^1.12.1",
+    "ts-jest": "^21.1.2",
     "ts-node": "^3.3.0"
+  },
+	"jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
   }
 }

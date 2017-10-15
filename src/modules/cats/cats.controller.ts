@@ -16,7 +16,7 @@ import { TransformInterceptor } from '../common/interceptors/transform.intercept
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
 export class CatsController {
 
-  constructor(private readonly catsService: CatsService, @Inject('ConnectionToken') private conn: any) {}
+  constructor(private readonly catsService: CatsService/*, @Inject('ConnectionToken') private conn: any*/) {}
 
   @Post()
   async create(@Body('', new ValidationPipe()) createCatDto: CreateCatDto) {
@@ -28,7 +28,7 @@ export class CatsController {
   @UseGuards(RolesGuard)
   @Roles('admin')
   async findAll(): Promise<any[]> {
-    console.log('ConnectionToken:', this.conn);
+    //console.log('ConnectionToken:', this.conn);
     return this.catsService.findAll();
   }
 
